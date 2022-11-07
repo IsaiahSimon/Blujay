@@ -3,23 +3,8 @@
  * message to display.
  *@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Reverse Routing -->
-  <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/style.css")">
-  <title>About Page</title>
-</head>
-<body>
-  <ul>
-    <li><a href="@routes.HomeController.index()">Home</a></li>
-    <li><a href="@routes.HomeController.about()">About</a></li>
-  </ul>
-  <hr>
+@main("About Us") {
+  @* Content for About Us Page*@
   <h1>The About Us Page</h1>
   <p>email@@me.com</p>
-</body>
-</html>
+}
