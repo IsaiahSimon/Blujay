@@ -24,4 +24,7 @@ public class HomeController extends Controller {
         return ok(about.render());
     }
 
+    public Result products() {
+        return ok(products.render());
+    }
 }

@@ -13,21 +13,26 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Reverse Routing -->
+  @* Reverse Routing *@
   <link rel="stylesheet" href="@routes.Assets.versioned(" stylesheets/style.css")">
   <title>@title</title>
 </head>
 
 <body>
-  <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/about">About</a></li>
-  </ul>
+  <nav class="navbar">
+    <ul> @* Reverse Routing *@
+      <li><a href="@routes.HomeController.index()">Home</a></li>
+      <li><a href="@routes.HomeController.about()">About</a></li>
+      <li><a href="@routes.HomeController.products()">Products</a></li>
+    </ul>
+  </nav>
   <hr>
-
-  @* Content goes here *@
-  <!-- Content area -->
+  <!-- Content area --> @* Content goes here *@
   @content
+  <hr>
+  <section id="footer">
+    <p>Page footer</p>
+  </section>
 </body>
 
 </html>
