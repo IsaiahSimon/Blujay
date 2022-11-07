@@ -2,19 +2,22 @@
  * This template takes a single argument, a String containing a
  * message to display.
  *@
+
+@* Parameters List *@
 @(message: String)
 
-@*
- * Call the `main` template with two arguments. The first
- * argument is a `String` with the title of the page, the second
- * argument is an `Html` object containing the body of the page.
- *@
-@main("Welcome to Play") {
-
-    @*
-     * Get an `Html` object by calling the built-in Play welcome
-     * template and passing a `String` message.
-     *@
-    @welcome(message, style = "java")
-
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Reverse Routing -->
+  <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/style.css")">
+  <title>BluJay</title>
+</head>
+<body>
+  <h1>Welcome to BluJay!</h1>
+  <p>@message</p>
+</body>
+</html>
