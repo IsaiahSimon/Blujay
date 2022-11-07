@@ -1,4 +1,4 @@
-name := """play-java-starter-example"""
+name := """blujay"""
 
 version := "1.0-SNAPSHOT"
 
