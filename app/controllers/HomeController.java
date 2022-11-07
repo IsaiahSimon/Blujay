@@ -1,6 +1,7 @@
 package controllers;
 
 import play.mvc.*;
+import models.Product;
 
 import views.html.*;
 
@@ -25,6 +26,21 @@ public class HomeController extends Controller {
     }
 
     public Result products() {
-        return ok(products.render());
+
+        // Create a new product
+        Product p = new Product();
+
+        // Set the properties for p
+        p.setId(1L);
+        p.setName("Test Product");
+        p.setCategory("Test Category");
+        p.setDescription("Test Description");
+        p.setStock(10);
+        p.setPrice(100.00);
+
+        // Create an object and initialize the properties
+        Product p2 = new Product(1L, "Test Product2", "Test Category2", "Test Description2", 20, 200.00);
+
+        return ok(products.render(p));
     }
 }
