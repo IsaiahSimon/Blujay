@@ -20,4 +20,8 @@ public class HomeController extends Controller {
         return ok(index.render("A lightweight inventory management system for healthcare facilities."));
     }
 
+    public Result about() {
+        return ok(about.render());
+    }
+
 }
