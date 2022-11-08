@@ -3,18 +3,39 @@
 * message to display.
 *@
 
-@import models.Product
-@(productList: List[Product])
+@import models._
+@(productList: List[Product], categoryList: List[Category])
 
 @main("Products") {
 <div class="row">
   <div class="col-md-2">
-    <div class="list-group">
-      <a href="#" class="list-group-item  list-group-item-action">All Categories</a>
+    <div class="list-group text-right">
+      <a href="@routes.HomeController.products(0)" class="list-group-item  list-group-item-action">All Categories
+        <span class="badge badge-secondary">@productList.size()</span>
+      </a>
+
+      @* Start of loop - for each category in the categoryList *@
+      @* Also display the number of products in each category *@
+      @* General url to display products for each categorry *@
+
+      @for(category <- categoryList) {
+        <a href="@routes.HomeController.products(category.getId)" class="list-group-item  list-group-item-action">@category.getName
+          <span class="badge badge-secondary">@category.getProducts.size()</span>
+        </a>
+        } @* End category loop *@
+
     </div>
   </div>
 
   <div class="col-md-auto">
+
+    @* Display flash message - after adding a product *@
+    @if(flash.containsKey("success")) {
+      <div class="alert alert-success">
+        @flash.get("success")
+      </div>
+    }
+
     <table class="table table-hover table-striped">
       <thead class="thead-dark">
         <th scope="col">ID</th>
@@ -28,16 +49,33 @@
         @* Iterate through products, adding a new row for each in the list *@
         @* for each product in the products list *@
 
-        @for(product <- productList) {
-          <tr scope="row">
-            <td>@product.getId</td>
-            <td>@product.getName</td>
-            <td>@product.getCategory</td>
-            <td>@product.getDescription</td>
-            <td>@product.getStock</td>
-            <td>&dollar;@product.getPrice</td>
+        @for(product <- productList) { <tr scope="row">
+          <td>@product.getId</td>
+          <td>@product.getName</td>
+          @* Get category for this product then getName *@
+          <td>@product.getCategory.getName</td>
+          <td>@product.getDescription</td>
+          <td>@product.getStock</td>
+          <td class="text-right">&dollar;@("%.2f".format(product.getPrice))</td>
+          <td>
+            <a
+              href="@routes.HomeController.updateProduct(product.getId)"
+              class="btn btn-outline-danger btn-sm"
+            >
+              <i class="far fa-edit"></i></a>
+          </td>
+          <!-- Delete product button -->
+          <td>
+            <a
+              href="@routes.HomeController.deleteProduct(product.getId)"
+              class="btn btn-outline-danger btn-sm"
+              onclick="return confirmDel();"
+            >
+              <i class="far fa-trash-alt"></i></a>
+          </td>
+
           </tr>
-        } @* End of Loop *@
+        } @* End for loop*@
 
       </tbody>
       <tfoot>
@@ -45,5 +83,13 @@
         </tr>
       </tfoot>
     </table>
+
+    <!-- Add product button -->
+    <div>
+      <a href="@routes.HomeController.addProduct()">
+        <button class="btn btn-primary">Add a Product</button>
+      </a>
+    </div>
+
   </div>
   }
