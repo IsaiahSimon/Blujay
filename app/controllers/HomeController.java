@@ -18,7 +18,7 @@ public class HomeController extends Controller {
      * <code>GET</code> request with a path of <code>/</code>.
      */
     public Result index() {
-        return ok(index.render("A lightweight inventory management system for healthcare facilities."));
+        return ok(index.render("A lightweight healthcare inventory management system (H.I.M.S.)"));
     }
 
     public Result about() {

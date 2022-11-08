@@ -1,14 +1,35 @@
 package models;
 
-public class Product {
+import java.util.*;
+import javax.persistence.*;
+
+import io.ebean.*;
+import play.data.format.*;
+import play.data.validation.*;
+
+
+@Entity //mark as an Ebean entity
+public class Product extends Model {
 
     // Properties
+    @Id //mark as primary key
     private Long id;
+
+    @Constraints.Required //validation rule
     private String name;
+
+    @Constraints.Required
     private String category;
+
+    @Constraints.Required
     private String description;
+
+    @Constraints.Min(0)
     private int stock;
+
+    @Constraints.Min(0)
     private double price;
+
 
     // Constructors
     public Product() {
@@ -23,6 +44,9 @@ public class Product {
         this.stock = stock;
         this.price = price;
     }
+
+    // Generic query helper for entity Product with id type Long
+    public static Finder<Long,Product> find = new Finder<>(Product.class);
 
     // Accessor Methods
     public Long getId()	{
