@@ -3,7 +3,8 @@
 * message to display.
 *@
 
-@(product: models.Product)
+@import models.Product
+@(productList: List[Product])
 
 @main("Products") {
 <div class="row">
@@ -24,14 +25,20 @@
         <th scope="col">Price</th>
       </thead>
       <tbody>
-        <tr scope="row">
-          <td>@product.getId</td>
-          <td>@product.getName</td>
-          <td>@product.getCategory</td>
-          <td>@product.getDescription</td>
-          <td>@product.getStock</td>
-          <td>&dollar;@product.getPrice</td>
-        </tr>
+        @* Iterate through products, adding a new row for each in the list *@
+        @* for each product in the products list *@
+
+        @for(product <- productList) {
+          <tr scope="row">
+            <td>@product.getId</td>
+            <td>@product.getName</td>
+            <td>@product.getCategory</td>
+            <td>@product.getDescription</td>
+            <td>@product.getStock</td>
+            <td>&dollar;@product.getPrice</td>
+          </tr>
+        } @* End of Loop *@
+
       </tbody>
       <tfoot>
         <tr scope="row">
